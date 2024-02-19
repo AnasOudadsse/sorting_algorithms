@@ -15,7 +15,7 @@ void intSwap(int *first, int *second)
 
 	variable = *first;
 	*first = *second;
-	*first = variable;
+	*second = variable;
 }
 
 /**
