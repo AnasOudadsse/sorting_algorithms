@@ -16,15 +16,15 @@ void intSwap(int *first, int *second)
 
 /**
  * bubble_sort - Sort an array of integers in ascending order.
- * @arr: An array of integers to sort.
+ * @array: An array of integers to sort.
  * @size: The size of the array.
  */
-void bubble_sort(int *arr, size_t size)
+void bubble_sort(int *array, size_t size)
 {
 	size_t n, length = size;
 	bool bubb = false;
 
-	if (arr == NULL || size < 2)
+	if (array == NULL || size < 2)
 		return;
 
 	while (bubb == false)
@@ -32,10 +32,10 @@ void bubble_sort(int *arr, size_t size)
 		bubb = true;
 		for (n = 0; n < length - 1; n++)
 		{
-			if (arr[n] > arr[n + 1])
+			if (array[n] > array[n + 1])
 			{
-				intSwap(arr + i, arr + i + 1);
-				print_array(arr, size);
+				intSwap(array + i, array + i + 1);
+				print_array(array, size);
 				bubb = false;
 			}
 		}
