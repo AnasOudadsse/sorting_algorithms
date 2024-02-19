@@ -1,4 +1,4 @@
-/*
+n/*
  * File: 106-bitonic_sort.c
  * Auth: Brennan D Baraban
  */
@@ -21,7 +21,7 @@ void intSwap(int *first, int *second)
 
 	variable = *first;
 	*first = *second;
-	*first = variable;
+	*second = variable;
 }
 /**
  * bitonic_merge - Sort a bitonic sequence inside an array of integers.
