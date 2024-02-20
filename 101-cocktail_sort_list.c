@@ -1,6 +1,6 @@
 #include "sort.h"
 
-void swap_list(listint_t *curr, listint_t *prev, listint_t **head);
+void listSwap(listint_t *cNode, listint_t *prev, listint_t **h);
 
 /**
 * cocktail_sort_list - Sorts a Doubly linked list with cocktail sort
@@ -39,24 +39,24 @@ void cocktail_sort_list(listint_t **list)
 /**
 * swap_list - swaps two members of a list
 *
-* @curr: current node
+* @cNode: current node
 * @prev: previous node
-* @head: head of list
+* @h: h of list
 */
-void swap_list(listint_t *curr, listint_t *prev, listint_t **head)
+void listSwap(listint_t *cNode, listint_t *prev, listint_t **h)
 {
-	listint_t *temp1 = curr->next;
-	listint_t *temp2 = prev->prev;
+	listint_t *tmp = cNode->next;
+	listint_t *tmp2 = prev->prev;
 
-	if (temp1 != NULL)
-		temp1->prev = prev;
-	if (temp2 != NULL)
-		temp2->next = curr;
-	curr->prev = temp2;
-	prev->next = temp1;
-	curr->next = prev;
-	prev->prev = curr;
-	if (*head == prev)
-		*head = curr;
-	print_list(*head);
+	if (tmp != NULL)
+		tmp->prev = prev;
+	if (tmp2 != NULL)
+		tmp2->next = cNode;
+	cNode->prev = tmp2;
+	prev->next = tmp;
+	cNode->next = prev;
+	prev->prev = cNode;
+	if (*h == prev)
+		*h = cNode;
+	print_list(*h);
 }
