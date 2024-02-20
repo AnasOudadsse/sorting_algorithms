@@ -1,6 +1,6 @@
 #include "sort.h"
 
-void insertion_sort(int *, long int, long int, size_t);
+void insertionSort(int *, long int, long int, size_t);
 
 /**
 * shell_sort - sorts using shell sort and knuths sequence

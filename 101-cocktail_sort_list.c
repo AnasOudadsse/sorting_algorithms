@@ -1,10 +1,10 @@
 #include "sort.h"
 
 /**
-* insertion_sort_list - sorts a list using insertion sort
+* insertionSort_list - sorts a list using insertion sort
 * @list: double pointer to head of list
 */
-void insertion_sort_list(listint_t **list)
+void insertionSort_list(listint_t **list)
 {
 	listint_t *cnode = NULL;
 	listint_t *prev = NULL;
