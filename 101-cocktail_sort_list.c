@@ -7,20 +7,20 @@
 void insertionSortList(listint_t **list)
 {
 	listint_t *cnode = NULL;
-	listint_t *prv = NULL;
+	listint_t *prev = NULL;
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
 
 	cnode = (*list)->next;
-	prv = cnode->prv;
+	prev = cnode->prev;
 	while (cnode != NULL)
 	{
-		prv = cnode->prv;
-		while (prv != NULL && prv->n > cnode->n)
+		prev = cnode->prev;
+		while (prev != NULL && prev->n > cnode->n)
 		{
-			listSwap(cnode, prv, list);
-			prv = cnode->prv;
+			listSwap(cnode, prev, list);
+			prev = cnode->prev;
 		}
 		cnode = cnode->next;
 	}
@@ -33,29 +33,29 @@ void insertionSortList(listint_t **list)
 
 void cocktail_sort_list(listint_t **list)
 {
-	listint_t *cNode;
-	listint_t *maximum = NULL;
-	listint_t *minimum = NULL;
+	listint_t *cur;
+	listint_t *max = NULL;
+	listint_t *min = NULL;
 
 	if (!list || !(*list) || (*list)->next == NULL)
 		return;
-	cNode = *list;
+	cur = *list;
 	do {
-		while (cNode->next)
+		while (cur->next)
 		{
-			if (cNode->n > cNode->next->n)
-				swap_list(cNode->next, cNode, list);
+			if (cur->n > cur->next->n)
+				swap_list(cur->next, cur, list);
 			else
-				cNode = cNode->next;
+				cur = cur->next;
 		}
-		maximum = cNode;
-		while (cNode->prev != minimum)
+		max = cur;
+		while (cur->prev != min)
 		{
-			if (cNode->n < cNode->prev->n)
-				swap_list(cNode, cNode->prev, list);
+			if (cur->n < cur->prev->n)
+				swap_list(cur, cur->prev, list);
 			else
-				cNode = cNode->prev;
+				cur = cur->prev;
 		}
-		minimum = cNode;
-	} while (minimum != maximum);
+		min = cur;
+	} while (min != max);
 }
