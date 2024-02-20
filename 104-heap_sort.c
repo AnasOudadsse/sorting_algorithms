@@ -2,50 +2,50 @@
 
 /**
 * sift_down - fixes a heap
-* @arr: the heap to fix
+* @array: the heap to fix
 * @root: the root of the heap
-* @final: the last index of the heap
-* @size: size of the arr
+* @end: the last index of the heap
+* @size: size of the array
 *
 * Return: void
 */
-void siftDown(int *arr, size_t root, size_t final, size_t size)
+void sift_down(int *array, size_t root, size_t end, size_t size)
 {
-	size_t left, right, switchh;
+	size_t left_child, right_child, swap;
 	int temp;
 
-	while ((left = (2 * root) + 1) <= final)
+	while ((left_child = (2 * root) + 1) <= end)
 	{
-		switchh = root;
-		right = left + 1;
-		if (arr[switchh] < arr[left])
-			switchh = left;
-		if (right <= final && arr[switchh] < arr[right])
-			switchh = right;
-		if (switchh == root)
+		swap = root;
+		right_child = left_child + 1;
+		if (array[swap] < array[left_child])
+			swap = left_child;
+		if (right_child <= end && array[swap] < array[right_child])
+			swap = right_child;
+		if (swap == root)
 			return;
-		temp = arr[root];
-		arr[root] = arr[switchh];
-		arr[switchh] = temp;
-		print_array(arr, size);
-		root = switchh;
+		temp = array[root];
+		array[root] = array[swap];
+		array[swap] = temp;
+		print_array(array, size);
+		root = swap;
 	}
 }
 
 /**
-* make_heap - makes a heap from an unsorted arr
-* @arr: arr to turn into a heap
-* @size: size of the arr
+* make_heap - makes a heap from an unsorted array
+* @array: array to turn into a heap
+* @size: size of the array
 *
 * Return: void
 */
-void make_heap(int *arr, size_t size)
+void make_heap(int *array, size_t size)
 {
 	size_t parent;
 
 	for (parent = ((size - 1) - 1) / 2; 1; parent--)
 	{
-		sift_down(arr, parent, size - 1, size);
+		sift_down(array, parent, size - 1, size);
 		if (parent == 0)
 			break;
 	}
@@ -60,20 +60,20 @@ void make_heap(int *arr, size_t size)
 */
 void heap_sort(int *array, size_t size)
 {
-	size_t final;
+	size_t end;
 	int temp;
 
 	if (array == NULL || size < 2)
 		return;
 	make_heap(array, size);
-	final = size - 1;
-	while (final > 0)
+	end = size - 1;
+	while (end > 0)
 	{
-		temp = array[final];
-		array[final] = array[0];
+		temp = array[end];
+		array[end] = array[0];
 		array[0] = temp;
 		print_array(array, size);
-		final--;
-		sift_down(array, 0, final, size);
+		end--;
+		sift_down(array, 0, end, size);
 	}
 }
