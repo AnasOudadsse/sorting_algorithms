@@ -42,26 +42,26 @@ void merge(size_t strt, size_t mid, size_t final, int *d, int *s)
 }
 
 /**
-* TDSplitMerge - recursively splits the array and merges the sorted arrays
-* @start: starting index (inclusive)
-* @end: end index (exclusive)
-* @array: the array to sort
-* @copy: a copy of the array
+* splitmerge - recursively splits the array and merges the sorted arrays
+* @strt: strting index (inclusive)
+* @final: final index (exclusive)
+* @arr: the arr to sort
+* @cp: a cp of the arr
 *
 * Return: void
 */
-void TDSplitMerge(size_t start, size_t end, int *array, int *copy)
+void splitmerge(size_t strt, size_t final, int *arr, int *cp)
 {
 	size_t middle;
 
-	if (end - start < 2)
+	if (final - strt < 2)
 		return;
-	middle = (start + end) / 2;
-	TDSplitMerge(start, middle, array, copy);
-	TDSplitMerge(middle, end, array, copy);
-	merge(start, middle, end, array, copy);
-	for (middle = start; middle < end; middle++)
-		copy[middle] = array[middle];
+	middle = (strt + final) / 2;
+	splitmerge(strt, middle, arr, cp);
+	splitmerge(middle, final, arr, cp);
+	merge(strt, middle, final, arr, cp);
+	for (middle = strt; middle < final; middle++)
+		cp[middle] = arr[middle];
 }
 
 /**
@@ -75,15 +75,15 @@ void TDSplitMerge(size_t start, size_t end, int *array, int *copy)
 void merge_sort(int *array, size_t size)
 {
 	size_t varr;
-	int *copy;
+	int *cp;
 
 	if (array == NULL || size < 2)
 		return;
-	copy = malloc(sizeof(int) * size);
-	if (copy == NULL)
+	cp = malloc(sizeof(int) * size);
+	if (cp == NULL)
 		return;
 	for (varr = 0; varr < size; varr++)
-		copy[varr] = array[varr];
-	TDSplitMerge(0, size, array, copy);
-	free(copy);
+		cp[varr] = array[varr];
+	splitmerge(0, size, array, cp);
+	free(cp);
 }
