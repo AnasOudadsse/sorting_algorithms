@@ -2,64 +2,64 @@
 #include <stdlib.h>
 
 /**
-* pow - calculates a positive power of 10
-* @pow: power of 10 to calculate
+* pow_10 - calculates a positive power of 10
+* @power: power of 10 to calculate
 *
 * Return: the corresponding power of 10
 */
-unsigned int pow(unsigned int pow)
+unsigned int pow_10(unsigned int power)
 {
-	unsigned int varr, total;
+	unsigned int i, result;
 
-	total = 1;
-	for (varr = 0; varr < pow; varr++)
-		total *= 10;
-	return (total);
+	result = 1;
+	for (i = 0; i < power; i++)
+		result *= 10;
+	return (result);
 }
 
 /**
-* sortCount - sorts an array of integers in ascending order at a specific
-* integer location using the Counting sort algorithm
-* @arr: arr to sort
-* @size: size of the arr to sort
-* @integer: integer to sort by
+* count_sort - sorts an array of integers in ascending order at a specific
+* digit location using the Counting sort algorithm
+* @array: array to sort
+* @size: size of the array to sort
+* @digit: digit to sort by
 *
 * Return: 1 if there is a need to keep sorting, 0 if not
 */
-unsigned int sortCount(int *arr, size_t size, unsigned int integer)
+unsigned int count_sort(int *array, size_t size, unsigned int digit)
 {
 	int i, count[10] = {0};
-	int *cp = NULL;
-	size_t j, tmp, result = 0;
+	int *copy = NULL;
+	size_t j, temp, total = 0;
 	unsigned int dp1, dp2, sort = 0;
 
-	dp2 = pow(integer - 1);
+	dp2 = pow_10(digit - 1);
 	dp1 = dp2 * 10;
-	cp = malloc(sizeof(int) * size);
-	if (cp == NULL)
+	copy = malloc(sizeof(int) * size);
+	if (copy == NULL)
 		exit(1);
 	for (j = 0; j < size; j++)
 	{
-		cp[j] = arr[j];
-		if (arr[j] / dp1 != 0)
+		copy[j] = array[j];
+		if (array[j] / dp1 != 0)
 			sort = 1;
 	}
 	for (i = 0; i < 10 ; i++)
 		count[i] = 0;
 	for (j = 0; j < size; j++)
-		count[(arr[j] % dp1) / dp2] += 1;
+		count[(array[j] % dp1) / dp2] += 1;
 	for (i = 0; i < 10; i++)
 	{
-		tmp = count[i];
-		count[i] = result;
-		result += tmp;
+		temp = count[i];
+		count[i] = total;
+		total += temp;
 	}
 	for (j = 0; j < size; j++)
 	{
-		arr[count[(cp[j] % dp1) / dp2]] = cp[j];
-		count[(cp[j] % dp1) / dp2] += 1;
+		array[count[(copy[j] % dp1) / dp2]] = copy[j];
+		count[(copy[j] % dp1) / dp2] += 1;
 	}
-	free(cp);
+	free(copy);
 	return (sort);
 }
 
@@ -79,7 +79,7 @@ void radix_sort(int *array, size_t size)
 		return;
 	for (i = 1; sort == 1; i++)
 	{
-		sort = sortCount(array, size, i);
+		sort = count_sort(array, size, i);
 		print_array(array, size);
 	}
 }
