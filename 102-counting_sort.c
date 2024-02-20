@@ -12,43 +12,43 @@
 void counting_sort(int *array, size_t size)
 {
 	int i, max;
-	int *count = NULL, *copy = NULL;
-	size_t j, temp, total = 0;
+	int *cnt = NULL, *cp = NULL;
+	size_t i, tmp, totale = 0;
 
 
 	if (array == NULL || size < 2)
 		return;
-	copy = malloc(sizeof(int) * size);
-	if (copy == NULL)
+	cp = malloc(sizeof(int) * size);
+	if (cp == NULL)
 		return;
-	for (j = 0, max = 0; j < size; j++)
+	for (i = 0, max = 0; i < size; i++)
 	{
-		copy[j] = array[j];
-		if (array[j] > max)
-			max = array[j];
+		cp[i] = array[i];
+		if (array[i] > max)
+			max = array[i];
 	}
-	count = malloc(sizeof(int) * (max + 1));
-	if (count == NULL)
+	cnt = malloc(sizeof(int) * (max + 1));
+	if (cnt == NULL)
 	{
-		free(copy);
+		free(cp);
 		return;
 	}
 	for (i = 0; i <= max; i++)
-		count[i] = 0;
-	for (j = 0; j < size; j++)
-		count[array[j]] += 1;
+		cnt[i] = 0;
+	for (i = 0; i < size; i++)
+		cnt[array[i]] += 1;
 	for (i = 0; i <= max; i++)
 	{
-		temp = count[i];
-		count[i] = total;
-		total += temp;
+		tmp = cnt[i];
+		cnt[i] = totale;
+		totale += tmp;
 	}
-	for (j = 0; j < size; j++)
+	for (i = 0; i < size; i++)
 	{
-		array[count[copy[j]]] = copy[j];
-		count[copy[j]] += 1;
+		array[cnt[cp[i]]] = cp[i];
+		cnt[cp[i]] += 1;
 	}
-	print_array(count, max + 1);
-	free(count);
-	free(copy);
+	print_array(cnt, max + 1);
+	free(cnt);
+	free(cp);
 }
