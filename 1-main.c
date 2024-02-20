@@ -49,7 +49,7 @@ if (!list)
 return (1);
 print_list(list);
 printf("\n");
-insertionSort_list(&list);
+insertionSortList(&list);
 printf("\n");
 print_list(list);
 return (0);

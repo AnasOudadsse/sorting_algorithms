@@ -1,26 +1,26 @@
 #include "sort.h"
 
 /**
-* insertionSort_list - sorts a list using insertion sort
+* insertionSortList - sorts a list using insertion sort
 * @list: double pointer to head of list
 */
-void insertionSort_list(listint_t **list)
+void insertionSortList(listint_t **list)
 {
 	listint_t *cnode = NULL;
-	listint_t *prev = NULL;
+	listint_t *prv = NULL;
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
 
 	cnode = (*list)->next;
-	prev = cnode->prev;
+	prv = cnode->prv;
 	while (cnode != NULL)
 	{
-		prev = cnode->prev;
-		while (prev != NULL && prev->n > cnode->n)
+		prv = cnode->prv;
+		while (prv != NULL && prv->n > cnode->n)
 		{
-			listSwap(cnode, prev, list);
-			prev = cnode->prev;
+			listSwap(cnode, prv, list);
+			prv = cnode->prv;
 		}
 		cnode = cnode->next;
 	}
@@ -33,29 +33,29 @@ void insertionSort_list(listint_t **list)
 
 void cocktail_sort_list(listint_t **list)
 {
-	listint_t *cur;
-	listint_t *max = NULL;
-	listint_t *min = NULL;
+	listint_t *cNode;
+	listint_t *maximum = NULL;
+	listint_t *minimum = NULL;
 
 	if (!list || !(*list) || (*list)->next == NULL)
 		return;
-	cur = *list;
+	cNode = *list;
 	do {
-		while (cur->next)
+		while (cNode->next)
 		{
-			if (cur->n > cur->next->n)
-				swap_list(cur->next, cur, list);
+			if (cNode->n > cNode->next->n)
+				swap_list(cNode->next, cNode, list);
 			else
-				cur = cur->next;
+				cNode = cNode->next;
 		}
-		max = cur;
-		while (cur->prev != min)
+		maximum = cNode;
+		while (cNode->prev != minimum)
 		{
-			if (cur->n < cur->prev->n)
-				swap_list(cur, cur->prev, list);
+			if (cNode->n < cNode->prev->n)
+				swap_list(cNode, cNode->prev, list);
 			else
-				cur = cur->prev;
+				cNode = cNode->prev;
 		}
-		min = cur;
-	} while (min != max);
+		minimum = cNode;
+	} while (minimum != maximum);
 }
