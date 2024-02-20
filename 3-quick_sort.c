@@ -2,63 +2,63 @@
 #include <stdio.h>
 
 /**
-* partition - finds the partition for the quicksort using the Lomuto scheme
-* @array: array to sort
-* @lo: lowest index of the partition to sort
-* @hi: highest index of the partition to sort
-* @size: size of the array
+* sortPartition - finds the sortPartition for the quicksort using the Lomuto scheme
+* @arr: arr to sort
+* @l: lowest index of the sortPartition to sort
+* @ko: highest index of the sortPartition to sort
+* @size: size of the arr
 *
-* Return: index of the partition
+* Return: index of the sortPartition
 */
-size_t partition(int *array, ssize_t lo, ssize_t hi, size_t size)
+size_t sortPartition(int *arr, ssize_t l, ssize_t ko, size_t size)
 {
 	ssize_t i, j;
-	int swap, pivot;
+	int s, im;
 
-	pivot = array[hi];
-	i = lo - 1;
-	for (j = lo; j < hi; j++)
+	im = arr[ko];
+	i = l - 1;
+	for (j = l; j < ko; j++)
 	{
-		if (array[j] < pivot)
+		if (arr[j] < im)
 		{
 			i++;
 			if (i != j)
 			{
-				swap = array[i];
-				array[i] = array[j];
-				array[j] = swap;
-				print_array(array, size);
+				s = arr[i];
+				arr[i] = arr[j];
+				arr[j] = s;
+				print_array(arr, size);
 			}
 		}
 	}
-	if (array[hi] < array[i + 1])
+	if (arr[ko] < arr[i + 1])
 	{
-		swap = array[i + 1];
-		array[i + 1] = array[hi];
-		array[hi] = swap;
-		print_array(array, size);
+		s = arr[i + 1];
+		arr[i + 1] = arr[ko];
+		arr[ko] = s;
+		print_array(arr, size);
 	}
 	return (i + 1);
 }
 
 /**
-* quicksort - sorts a partition of an array of integers
-* @array: array to sort
-* @lo: lowest index of the partition to sort
-* @hi: highest index of the partition to sort
-* @size: size of the array
+* quicksort - sorts a sortPartition of an arr of integers
+* @arr: arr to sort
+* @l: lowest index of the sortPartition to sort
+* @ko: highest index of the sortPartition to sort
+* @size: size of the arr
 *
 * Return: void
 */
-void quicksort(int *array, ssize_t lo, ssize_t hi, size_t size)
+void quicksort(int *arr, ssize_t l, ssize_t ko, size_t size)
 {
-	ssize_t pivot;
+	ssize_t im;
 
-	if (lo < hi)
+	if (l < ko)
 	{
-		pivot = partition(array, lo, hi, size);
-		quicksort(array, lo, pivot - 1, size);
-		quicksort(array, pivot + 1, hi, size);
+		im = sortPartition(arr, l, ko, size);
+		quicksort(arr, l, im - 1, size);
+		quicksort(arr, im + 1, ko, size);
 
 	}
 }
