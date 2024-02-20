@@ -1,7 +1,7 @@
 #include "sort.h"
 
 /**
-* insertionSortList - sorts a list using insertion sort
+* insertionSort_list - sorts a list using insertion sort
 * @list: double pointer to head of list
 */
 void insertionSortList(listint_t **list)
