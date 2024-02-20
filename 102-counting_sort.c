@@ -23,7 +23,7 @@ void counting_sort(int *array, size_t size)
 		return;
 	for (m = 0, maxim = 0; m < size; m++)
 	{
-		copy[m] = array[m];
+		c[m] = array[m];
 		if (array[m] > maxim)
 			maxim = array[m];
 	}
@@ -45,7 +45,7 @@ void counting_sort(int *array, size_t size)
 	}
 	for (m = 0; m < size; m++)
 	{
-		array[counter[copy[m]]] = c[m];
+		array[counter[c[m]]] = c[m];
 		counter[c[m]] += 1;
 	}
 	print_array(counter, maxim + 1);
