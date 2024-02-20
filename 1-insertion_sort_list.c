@@ -1,4 +1,5 @@
 #include "sort.h"
+void listSwap(listint_t *cnode, listint_t *prev, listint_t **h);
 
 /**
 * listSwap - swaps two members of a list
