@@ -1,52 +1,62 @@
 #include "sort.h"
-void listSwap(listint_t *cnode, listint_t *prev, listint_t **h);
+
+void swap_list(listint_t *curr, listint_t *prev, listint_t **head);
 
 /**
-* listSwap - swaps two members of a list
-* @cnode: current node
-* @prev: previous node
-* @h: head of list
+* cocktail_sort_list - Sorts a Doubly linked list with cocktail sort
+* @list: A Doubly linked list
 */
-void listSwap(listint_t *cnode, listint_t *prev, listint_t **h)
-{
-	listint_t *tmp1 = cnode->next;
-	listint_t *tmp2 = prev->prev;
 
-	if (tmp1 != NULL)
-		tmp1->prev = prev;
-	if (tmp2 != NULL)
-		tmp2->next = cnode;
-	cnode->prev = tmp2;
-	prev->next = tmp1;
-	cnode->next = prev;
-	prev->prev = cnode;
-	if (*h == prev)
-		*h = cnode;
-	print_list(*h);
+void cocktail_sort_list(listint_t **list)
+{
+	listint_t *cur;
+	listint_t *max = NULL;
+	listint_t *min = NULL;
+
+	if (!list || !(*list) || (*list)->next == NULL)
+		return;
+	cur = *list;
+	do {
+		while (cur->next)
+		{
+			if (cur->n > cur->next->n)
+				swap_list(cur->next, cur, list);
+			else
+				cur = cur->next;
+		}
+		max = cur;
+		while (cur->prev != min)
+		{
+			if (cur->n < cur->prev->n)
+				swap_list(cur, cur->prev, list);
+			else
+				cur = cur->prev;
+		}
+		min = cur;
+	} while (min != max);
 }
 
 /**
-* insertionSortList - sorts a list using insertion sort
-* @list: double pointer to head of list
+* swap_list - swaps two members of a list
+*
+* @curr: current node
+* @prev: previous node
+* @head: head of list
 */
-void insertionSortList(listint_t **list)
+void swap_list(listint_t *curr, listint_t *prev, listint_t **head)
 {
-	listint_t *cnode = NULL;
-	listint_t *prev = NULL;
+	listint_t *temp1 = curr->next;
+	listint_t *temp2 = prev->prev;
 
-	if (list == NULL || *list == NULL || (*list)->next == NULL)
-		return;
-
-	cnode = (*list)->next;
-	prev = cnode->prev;
-	while (cnode != NULL)
-	{
-		prev = cnode->prev;
-		while (prev != NULL && prev->n > cnode->n)
-		{
-			listSwap(cnode, prev, list);
-			prev = cnode->prev;
-		}
-		cnode = cnode->next;
-	}
+	if (temp1 != NULL)
+		temp1->prev = prev;
+	if (temp2 != NULL)
+		temp2->next = curr;
+	curr->prev = temp2;
+	prev->next = temp1;
+	curr->next = prev;
+	prev->prev = curr;
+	if (*head == prev)
+		*head = curr;
+	print_list(*head);
 }
