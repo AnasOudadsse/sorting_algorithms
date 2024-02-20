@@ -1,51 +1,51 @@
 #include "sort.h"
 
 /**
-* sift_down - fixes a heap
-* @array: the heap to fix
+* siftDown - fixes a heap
+* @arr: the heap to fix
 * @root: the root of the heap
-* @end: the last index of the heap
-* @size: size of the array
+* @final: the last index of the heap
+* @size: size of the arr
 *
 * Return: void
 */
-void sift_down(int *array, size_t root, size_t end, size_t size)
+void siftDown(int *arr, size_t root, size_t final, size_t size)
 {
-	size_t left_child, right_child, swap;
+	size_t left, right, switchh;
 	int temp;
 
-	while ((left_child = (2 * root) + 1) <= end)
+	while ((left = (2 * root) + 1) <= final)
 	{
-		swap = root;
-		right_child = left_child + 1;
-		if (array[swap] < array[left_child])
-			swap = left_child;
-		if (right_child <= end && array[swap] < array[right_child])
-			swap = right_child;
-		if (swap == root)
+		switchh = root;
+		right = left + 1;
+		if (arr[switchh] < arr[left])
+			switchh = left;
+		if (right <= final && arr[switchh] < arr[right])
+			switchh = right;
+		if (switchh == root)
 			return;
-		temp = array[root];
-		array[root] = array[swap];
-		array[swap] = temp;
-		print_array(array, size);
-		root = swap;
+		temp = arr[root];
+		arr[root] = arr[switchh];
+		arr[switchh] = temp;
+		print_array(arr, size);
+		root = switchh;
 	}
 }
 
 /**
-* make_heap - makes a heap from an unsorted array
-* @array: array to turn into a heap
-* @size: size of the array
+* make_heap - makes a heap from an unsorted arr
+* @arr: arr to turn into a heap
+* @size: size of the arr
 *
 * Return: void
 */
-void make_heap(int *array, size_t size)
+void make_heap(int *arr, size_t size)
 {
 	size_t parent;
 
 	for (parent = ((size - 1) - 1) / 2; 1; parent--)
 	{
-		sift_down(array, parent, size - 1, size);
+		siftDown(arr, parent, size - 1, size);
 		if (parent == 0)
 			break;
 	}
@@ -60,20 +60,20 @@ void make_heap(int *array, size_t size)
 */
 void heap_sort(int *array, size_t size)
 {
-	size_t end;
+	size_t final;
 	int temp;
 
 	if (array == NULL || size < 2)
 		return;
 	make_heap(array, size);
-	end = size - 1;
-	while (end > 0)
+	final = size - 1;
+	while (final > 0)
 	{
-		temp = array[end];
-		array[end] = array[0];
+		temp = array[final];
+		array[final] = array[0];
 		array[0] = temp;
 		print_array(array, size);
-		end--;
-		sift_down(array, 0, end, size);
+		final--;
+		siftDown(array, 0, final, size);
 	}
 }
