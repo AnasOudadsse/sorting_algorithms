@@ -31,23 +31,23 @@ unsigned int sortCount(int *arr, size_t size, unsigned int integerr)
 	int i, count[10] = {0};
 	int *copy = NULL;
 	size_t j, tmp, result = 0;
-	unsigned int dp1, dp2, sort = 0;
+	unsigned int d, p, s = 0;
 
-	dp2 = tenPower(integerr - 1);
-	dp1 = dp2 * 10;
+	p = tenPower(integerr - 1);
+	d = p * 10;
 	copy = malloc(sizeof(int) * size);
 	if (copy == NULL)
 		exit(1);
 	for (j = 0; j < size; j++)
 	{
 		copy[j] = arr[j];
-		if (arr[j] / dp1 != 0)
-			sort = 1;
+		if (arr[j] / d != 0)
+			s = 1;
 	}
 	for (i = 0; i < 10 ; i++)
 		count[i] = 0;
 	for (j = 0; j < size; j++)
-		count[(arr[j] % dp1) / dp2] += 1;
+		count[(arr[j] % d) / p] += 1;
 	for (i = 0; i < 10; i++)
 	{
 		tmp = count[i];
@@ -56,11 +56,11 @@ unsigned int sortCount(int *arr, size_t size, unsigned int integerr)
 	}
 	for (j = 0; j < size; j++)
 	{
-		arr[count[(copy[j] % dp1) / dp2]] = copy[j];
-		count[(copy[j] % dp1) / dp2] += 1;
+		arr[count[(copy[j] % d) / p]] = copy[j];
+		count[(copy[j] % d) / p] += 1;
 	}
 	free(copy);
-	return (sort);
+	return (s);
 }
 
 /**
