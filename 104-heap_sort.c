@@ -33,13 +33,13 @@ void siftDown(int *arr, size_t root, size_t final, size_t size)
 }
 
 /**
-* make_heap - makes a heap from an unsorted arr
+* makeHeap - makes a heap from an unsorted arr
 * @arr: arr to turn into a heap
 * @size: size of the arr
 *
 * Return: void
 */
-void make_heap(int *arr, size_t size)
+void makeHeap(int *arr, size_t size)
 {
 	size_t parent;
 
@@ -65,7 +65,7 @@ void heap_sort(int *array, size_t size)
 
 	if (array == NULL || size < 2)
 		return;
-	make_heap(array, size);
+	makeHeap(array, size);
 	final = size - 1;
 	while (final > 0)
 	{
