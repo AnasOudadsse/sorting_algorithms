@@ -4,41 +4,41 @@
 
 /**
 * TDMerge - sorts and merges the sub arrays in source
-* @start: starting index (inclusive) for the left sub array
-* @middle: end index (exclusive) for the left sub array and
+* @strt: starting index (inclusive) for the left sub array
+* @mid: end index (exclusive) for the left sub array and
 * starting index (inclusive) for the right sub array
-* @end: end index (exclusive) for the right sub array
-* @dest: destination for data
-* @source: source of data
+* @final: final index (exclusive) for the right sub array
+* @d: destination for data
+* @s: s of data
 *
 * Return: void
 */
-void TDMerge(size_t start, size_t middle, size_t end, int *dest, int *source)
+void TDMerge(size_t strt, size_t mid, size_t final, int *d, int *s)
 {
 	size_t i, j, k;
 
 	printf("Merging...\n");
 	printf("[left]: ");
-	print_array(source + start, middle - start);
+	print_array(s + strt, mid - strt);
 	printf("[right]: ");
-	print_array(source + middle, end - middle);
-	i = start;
-	j = middle;
-	for (k = start; k < end; k++)
+	print_array(s + mid, final - mid);
+	i = strt;
+	j = mid;
+	for (k = strt; k < final; k++)
 	{
-		if (i < middle && (j >= end || source[i] <= source[j]))
+		if (i < mid && (j >= final || s[i] <= s[j]))
 		{
-			dest[k] = source[i];
+			d[k] = s[i];
 			i++;
 		}
 		else
 		{
-			dest[k] = source[j];
+			d[k] = s[j];
 			j++;
 		}
 	}
 	printf("[Done]: ");
-	print_array(dest + start, end - start);
+	print_array(d + strt, final - strt);
 }
 
 /**
