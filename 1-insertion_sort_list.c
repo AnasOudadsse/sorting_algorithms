@@ -45,7 +45,7 @@ void insertion_sort_list(listint_t **list)
 		prev = curr->prev;
 		while (prev != NULL && prev->n > curr->n)
 		{
-			swap_list(curr, prev, list);
+			listSwap(curr, prev, list);
 			prev = curr->prev;
 		}
 		curr = curr->next;
