@@ -4,7 +4,7 @@
 * listSwap - swaps two members of a list
 * @cnode: current node
 * @prev: previous node
-* @head: head of list
+* @h: head of list
 */
 void listSwap(listint_t *cnode, listint_t *prev, listint_t **h)
 {
