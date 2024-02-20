@@ -32,29 +32,29 @@ void listSwap(listint_t *curr, listint_t *prev, listint_t **head)
 
 void cocktail_sort_list(listint_t **list)
 {
-	listint_t *cur;
-	listint_t *max = NULL;
-	listint_t *min = NULL;
+	listint_t *current;
+	listint_t *maximum = NULL;
+	listint_t *minimum = NULL;
 
 	if (!list || !(*list) || (*list)->next == NULL)
 		return;
-	cur = *list;
+	current = *list;
 	do {
-		while (cur->next)
+		while (current->next)
 		{
-			if (cur->n > cur->next->n)
-				listSwap(cur->next, cur, list);
+			if (current->n > current->next->n)
+				listSwap(current->next, current, list);
 			else
-				cur = cur->next;
+				current = current->next;
 		}
-		max = cur;
-		while (cur->prev != min)
+		maximum = current;
+		while (current->prev != minimum)
 		{
-			if (cur->n < cur->prev->n)
-				listSwap(cur, cur->prev, list);
+			if (current->n < current->prev->n)
+				listSwap(current, current->prev, list);
 			else
-				cur = cur->prev;
+				current = current->prev;
 		}
-		min = cur;
-	} while (min != max);
+		minimum = current;
+	} while (minimum != maximum);
 }
