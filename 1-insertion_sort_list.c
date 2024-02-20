@@ -2,7 +2,6 @@
 
 /**
 * listSwap - swaps two members of a list
-*
 * @cnode: current node
 * @prev: previous node
 * @head: head of list
@@ -27,27 +26,26 @@ void listSwap(listint_t *cnode, listint_t *prev, listint_t **h)
 
 /**
 * insertion_sort_list - sorts a list using insertion sort
-*
 * @list: double pointer to head of list
 */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *curr = NULL;
+	listint_t *cnode = NULL;
 	listint_t *prev = NULL;
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
 
-	curr = (*list)->next;
-	prev = curr->prev;
-	while (curr != NULL)
+	cnode = (*list)->next;
+	prev = cnode->prev;
+	while (cnode != NULL)
 	{
-		prev = curr->prev;
-		while (prev != NULL && prev->n > curr->n)
+		prev = cnode->prev;
+		while (prev != NULL && prev->n > cnode->n)
 		{
-			listSwap(curr, prev, list);
-			prev = curr->prev;
+			listSwap(cnode, prev, list);
+			prev = cnode->prev;
 		}
-		curr = curr->next;
+		cnode = cnode->next;
 	}
 }
