@@ -2,12 +2,11 @@
 #include <stdio.h>
 
 /**
-* sortPartition - finds the sortPartition for the quicksort using the Lomuto scheme
+* sortPartition - finds the sortPartition for the quicksort
 * @arr: arr to sort
 * @l: lowest index of the sortPartition to sort
 * @ko: highest index of the sortPartition to sort
 * @size: size of the arr
-*
 * Return: index of the sortPartition
 */
 size_t sortPartition(int *arr, ssize_t l, ssize_t ko, size_t size)
