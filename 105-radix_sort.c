@@ -73,13 +73,13 @@ unsigned int sortCount(int *arr, size_t size, unsigned int integerr)
 */
 void radix_sort(int *array, size_t size)
 {
-	unsigned int i, sort = 1;
+	unsigned int j, s = 1;
 
 	if (array == NULL || size < 2)
 		return;
-	for (i = 1; sort == 1; i++)
+	for (j = 1; s == 1; j++)
 	{
-		sort = sortCount(array, size, i);
+		s = sortCount(array, size, j);
 		print_array(array, size);
 	}
 }
