@@ -2,19 +2,19 @@
 #include <stdlib.h>
 
 /**
-* pow_10 - calculates a positive power of 10
-* @power: power of 10 to calculate
+* tenPower - calculates a positive power of 10
+* @pow: power of 10 to calculate
 *
 * Return: the corresponding power of 10
 */
-unsigned int pow_10(unsigned int power)
+unsigned int tenPower(unsigned int pow)
 {
-	unsigned int i, result;
+	unsigned int i, total;
 
-	result = 1;
-	for (i = 0; i < power; i++)
-		result *= 10;
-	return (result);
+	total = 1;
+	for (i = 0; i < pow; i++)
+		total *= 10;
+	return (total);
 }
 
 /**
@@ -33,7 +33,7 @@ unsigned int count_sort(int *array, size_t size, unsigned int digit)
 	size_t j, temp, total = 0;
 	unsigned int dp1, dp2, sort = 0;
 
-	dp2 = pow_10(digit - 1);
+	dp2 = tenPower(digit - 1);
 	dp1 = dp2 * 10;
 	copy = malloc(sizeof(int) * size);
 	if (copy == NULL)
